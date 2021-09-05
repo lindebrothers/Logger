@@ -25,6 +25,7 @@ public protocol LoggerProvider {
 }
 
 public struct LoggerMock: LoggerProvider {
+    public init() {}
     public func publish(message: String, obj: Any, level: LogLevel) {}
 }
 
