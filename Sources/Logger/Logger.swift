@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-public enum LogLevel: Int, Sendable {
+public enum LogLevel: Int {
     case none, debug, info, warning, error
 
     func getEmoj() -> String {
@@ -21,7 +21,7 @@ public enum LogLevel: Int, Sendable {
 }
 
 public protocol LoggerProvider {
-    func publish(message: String, obj: Any, level: LogLevel) async
+    func publish(message: String, obj: Any, level: LogLevel)
 }
 
 public struct LoggerMock: LoggerProvider {
@@ -29,7 +29,8 @@ public struct LoggerMock: LoggerProvider {
     public func publish(message: String, obj: Any, level: LogLevel) {}
 }
 
-public final actor Logger: LoggerProvider {
+public final class Logger: LoggerProvider, Sendable {
+    
     public init() {}
     public var logLevel: LogLevel {
 #if DEBUG
