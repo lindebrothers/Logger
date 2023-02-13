@@ -53,9 +53,9 @@ public final actor Logger: LoggerProvider {
         return name.components(separatedBy: "(")[0]
     }
 
-    public func debug(_ obj: Any, functionName: String? = #function, line: Int? = #line, path: String? = #file) async {
+    public func debug(_ obj: Any, functionName: String? = #function, line: Int? = #line, path: String? = #file) {
         let lineStr = line != nil ? "[\(line ?? 0)]" : ""
-        await publish(
+        publish(
             message: "\(Logger.getFileName(path)).\(Logger.getFunctionName(functionName))\(lineStr):",
 
             obj: obj,
@@ -63,34 +63,34 @@ public final actor Logger: LoggerProvider {
         )
     }
 
-    public func info(_ obj: Any, functionName: String? = #function, line: Int? = #line, path: String? = #file) async {
+    public func info(_ obj: Any, functionName: String? = #function, line: Int? = #line, path: String? = #file) {
         let lineStr = line != nil ? "[\(line ?? 0)]" : ""
-        await publish(
+        publish(
             message: "\(Logger.getFileName(path)).\(Logger.getFunctionName(functionName))\(lineStr):",
             obj: obj,
             level: .info
         )
     }
 
-    public func warning(_ obj: Any, functionName: String? = #function, line: Int? = #line, path: String? = #file) async {
+    public func warning(_ obj: Any, functionName: String? = #function, line: Int? = #line, path: String? = #file) {
         let lineStr = line != nil ? "[\(line ?? 0)]" : ""
-        await publish(
+        publish(
             message: "\(Logger.getFileName(path)).\(Logger.getFunctionName(functionName))\(lineStr):",
             obj: obj,
             level: .warning
         )
     }
 
-    public func error(_ obj: Any, functionName: String? = #function, line: Int? = #line, path: String? = #file) async {
+    public func error(_ obj: Any, functionName: String? = #function, line: Int? = #line, path: String? = #file) {
         let lineStr = line != nil ? "[\(line ?? 0)]" : ""
-        await publish(
+        publish(
             message: "\(Logger.getFileName(path)).\(Logger.getFunctionName(functionName))\(lineStr):",
             obj: obj,
             level: .error
         )
     }
 
-    public func publish(message: String, obj: Any, level: LogLevel) async {
+    public func publish(message: String, obj: Any, level: LogLevel) {
         guard level.rawValue >= logLevel.rawValue else {
             return
         }
