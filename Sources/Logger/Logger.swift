@@ -30,6 +30,7 @@ public struct LoggerMock: LoggerProvider {
 }
 
 public final actor Logger: LoggerProvider {
+    public init() {}
     public var logLevel: LogLevel {
 #if DEBUG
         return .debug
