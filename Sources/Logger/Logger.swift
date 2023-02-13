@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-public enum LogLevel: Int {
+public enum LogLevel: Int, Sendable {
     case none, debug, info, warning, error
 
     func getEmoj() -> String {
